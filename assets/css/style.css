@@ -5833,8 +5833,8 @@ fieldset:disabled .btn {
 }
 
 .card {
-    --bs-card-spacer-y: 2rem;
-    --bs-card-spacer-x: 2rem;
+    --bs-card-spacer-y: 0.5rem;
+    --bs-card-spacer-x: 0.5rem;
     --bs-card-title-spacer-y: 0.5rem;
     --bs-card-title-color: ;
     --bs-card-subtitle-color: ;
@@ -9120,16 +9120,13 @@ fieldset:disabled .btn {
 }
 
 .shadow-sm {
-    border-right: 2px solid #39BAF6; /* Top border */
-    border-left: 2px solid #39BAF6; /* Bottom border */
-    border-top: none !important;
-    border-bottom: none; /* No right border */
-    border-radius: 6px; /* Keep the border radius if needed */
-    box-shadow: -10px 0 10px -10px 
-    #39BAF6, /* Left shadow */
-    10px 0 10px -10px 
-    #39BAF6;  /* Right shadow */
-    background: #fff; /* White background */
+    border-radius: 20px;
+	padding: 0 1.5vw 1.5vw;
+	border-right: 2px;
+	border-left: 2px;
+	border-style: solid;
+/* 	border-image: linear-gradient(to bottom, #ccc, #555 66%, #ffffff) 1 100%; */
+	border-image: linear-gradient(to bottom, #ffffff, #45A1FF, #ffffff) 1 100%;
 }
 
 .shadow-lg {
