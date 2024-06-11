@@ -13258,7 +13258,9 @@ fieldset:disabled .btn {
 
 .bg-darker {
     --bs-bg-opacity: 1;
-    background-color: rgba(var(--bs-darker-rgb), var(--bs-bg-opacity)) !important
+    background-color: #fff !important;
+    border-radius: 10px; /* Optional: Add border radius for rounded corners */
+    box-shadow: 0 0 20px rgba(47,128,223,0.4), 0 0 40px rgba(47,128,223,0.4), 0 0 60px rgba(47,128,223,0.2); /* Glowing effect */
 }
 
 .bg-black {
@@ -34567,7 +34569,9 @@ iframe.wait-autoplay {
 }
 
 .section-wrap-angle.bg-darker:before {
-    background: #071321
+    background: #fff;
+    border-radius: 10px; /* Optional: Add border radius for rounded corners */
+    box-shadow: 0 0 20px rgba(47,128,223,0.4), 0 0 40px rgba(47,128,223,0.4), 0 0 60px rgba(47,128,223,0.2); /* Glowing effect */
 }
 
 .section-wrap-angle-top-right {
@@ -35445,14 +35449,15 @@ strong {
 .wgs .list {
     font-size: .875rem
 }
-
 .pricing {
     position: relative;
-    border-radius: .875rem;
-     background: rgb(255,255,255);
-    background: linear-gradient(350deg, rgba(255,255,255,1) 0%, rgba(47,128,223,1) 100%);
-    border-radius: 10px; /* Optional: Add border radius for rounded corners */
-    box-shadow: 0 0 20px rgba(47,128,223,0.6), 0 0 40px rgba(47,128,223,0.4), 0 0 60px rgba(47,128,223,0.2); /* Glowing effect */
+    background-color: #ffffff; /* Set background to white */
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    
+    box-shadow: 0 10px 20px #72d2ff;
+    border-radius: 20px !important;
+   
 }
 
 .pricing-toggle {
