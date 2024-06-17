@@ -276,7 +276,7 @@ svg {
         font-size: 25px;
         font-weight: 700;
         font-family: "Spline Sans";
-        color: #999;
+        color: red;
         margin-right: 10px;
         margin-bottom: 0px; /* Add some space between original and discounted price */
         position: relative;
@@ -291,7 +291,7 @@ svg {
         left: -100%;
         width: 100%;
         height: 2px;
-        background-color: #999;
+        background-color: red;
         animation: strikethrough 2s linear infinite;
     }
 
