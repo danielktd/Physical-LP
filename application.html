@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forex Bulls Academy — Marketing Role Application</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<link href="favicon.png" rel="shortcut icon" type="image/x-icon" />
+<link href="favicon.png" rel="apple-touch-icon" />
+<style>
+  :root {
+    --primary: #01247b;
+    --primary-light: #153896;
+    --accent: #ffffff;
+    --bg: #0A0A08;
+    --surface: #111110;
+    --surface2: #1A1A17;
+    --border: rgba(255,255,255,0.15);
+    --text: #F0EDE4;
+    --text-dim: rgba(240,237,228,0.6);
+    --text-dimmer: rgba(240,237,228,0.3);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #000917 0%, #01247b 50%, #153896 100%);
+    color: var(--text);
+    min-height: 100vh;
+    overflow: hidden;
+    position: relative;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse 60% 50% at 70% 20%, rgba(255,255,255,0.03) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 60% at 20% 80%, rgba(255,255,255,0.02) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  #progress-bar {
+    position: fixed;
+    top: 0; left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #ffffff, rgba(255,255,255,0.7));
+    width: 0%;
+    transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+    z-index: 100;
+    box-shadow: 0 0 12px rgba(255,255,255,0.4);
+  }
+
+  #topnav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 50;
+    background: linear-gradient(to bottom, rgba(0,9,23,0.95), transparent);
+  }
+
+  .brand {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .step-counter {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--text-dim);
+    letter-spacing: 0.08em;
+  }
+
+  #app {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .screen {
+    display: none;
+    width: 100%;
+    max-width: 720px;
+    padding: 0 40px;
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  .screen.active {
+    display: block;
+    animation: slideUp 0.5s cubic-bezier(0.4,0,0.2,1) forwards;
+  }
+
+  .screen.exit {
+    animation: slideDown 0.35s cubic-bezier(0.4,0,0.2,1) forwards;
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+  }
+
+  .section-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.7);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    opacity: 0.8;
+    font-weight: 500;
+  }
+
+  .question-text {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(22px, 3.5vw, 34px);
+    line-height: 1.3;
+    color: #ffffff;
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+
+  .question-sub {
+    font-size: 14px;
+    color: var(--text-dim);
+    margin-bottom: 36px;
+    line-height: 1.6;
+  }
+
+  .input-field {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1.5px solid var(--border);
+    padding: 14px 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    color: #ffffff;
+    outline: none;
+    transition: border-color 0.3s;
+    caret-color: #ffffff;
+  }
+
+  .input-field::placeholder { color: var(--text-dimmer); }
+
+  .input-field:focus {
+    border-bottom-color: #ffffff;
+  }
+
+  textarea.input-field {
+    resize: none;
+    min-height: 120px;
+    line-height: 1.6;
+    font-size: 16px;
+    padding: 14px 0;
+  }
+
+  .options-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 8px;
+  }
+
+  .options-grid.horizontal {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .option-btn {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 20px;
+    background: rgba(255,255,255,0.05);
+    border: 1.5px solid var(--border);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: left;
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .option-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.08);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .option-btn:hover::before { opacity: 1; }
+  .option-btn:hover { border-color: rgba(255,255,255,0.4); }
+
+  .option-btn.selected {
+    border-color: #ffffff;
+    background: rgba(255,255,255,0.15);
+  }
+
+  .option-key {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    width: 24px; height: 24px;
+    border: 1px solid currentColor;
+    border-radius: 3px;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0.5;
+    flex-shrink: 0;
+    letter-spacing: 0;
+    font-weight: 600;
+  }
+
+  .option-btn.selected .option-key {
+    opacity: 1;
+    background: #ffffff;
+    border-color: #ffffff;
+    color: #000917;
+  }
+
+  .checkbox-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    background: rgba(255,255,255,0.05);
+    border: 1.5px solid var(--border);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #ffffff;
+    font-size: 15px;
+  }
+
+  .checkbox-item:hover { border-color: rgba(255,255,255,0.4); }
+
+  .checkbox-item.checked {
+    border-color: #ffffff;
+    background: rgba(255,255,255,0.15);
+  }
+
+  .checkbox-box {
+    width: 20px; height: 20px;
+    border: 1.5px solid var(--border);
+    border-radius: 3px;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    position: relative;
+  }
+
+  .checkbox-item.checked .checkbox-box {
+    background: #ffffff;
+    border-color: #ffffff;
+  }
+
+  .checkbox-box::after {
+    content: '✓';
+    font-size: 12px;
+    color: #000917;
+    opacity: 0;
+    transition: opacity 0.15s;
+    font-weight: 700;
+  }
+
+  .checkbox-item.checked .checkbox-box::after { opacity: 1; }
+
+  .btn-next {
+    margin-top: 32px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    background: #ffffff;
+    color: #000917;
+    border: none;
+    border-radius: 12px;
+    font-family: 'Interdisplay', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 600;
+  }
+
+  .btn-next:hover {
+    background: rgba(255,255,255,0.9);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(255,255,255,0.2);
+  }
+
+  .btn-next:active { transform: translateY(0); }
+
+  .btn-next svg { transition: transform 0.2s; }
+  .btn-next:hover svg { transform: translateX(4px); }
+
+  .enter-hint {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 14px;
+    font-family: 'Interdisplay', sans-serif;
+    font-size: 11px;
+    color: var(--text-dimmer);
+    letter-spacing: 0.08em;
+  }
+
+  .enter-hint kbd {
+    padding: 2px 6px;
+    border: 1px solid var(--text-dimmer);
+    border-radius: 3px;
+    font-size: 10px;
+  }
+
+  .intro-badge {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.7);
+    border: 1px solid var(--border);
+    padding: 6px 14px;
+    border-radius: 12px;
+    margin-bottom: 28px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .intro-title {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(32px, 5vw, 54px);
+    line-height: 1.15;
+    margin-bottom: 20px;
+    font-weight: 700;
+  }
+
+  .intro-title em {
+    font-style: italic;
+    color: #ffffff;
+  }
+
+  .intro-body {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.7;
+    max-width: 540px;
+    margin-bottom: 40px;
+  }
+
+  .intro-meta {
+    display: flex;
+    gap: 28px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+  }
+
+  .meta-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Interdisplay', sans-serif;
+    font-size: 12px;
+    color: var(--text-dim);
+  }
+
+  .meta-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #ffffff;
+    opacity: 0.6;
+  }
+
+  .thankyou-icon {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 28px;
+    font-size: 40px;
+  }
+
+  .conditional-field {
+    margin-top: 16px;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.4s ease, opacity 0.3s ease;
+  }
+
+  .conditional-field.visible {
+    max-height: 200px;
+    opacity: 1;
+  }
+
+  .other-input {
+    margin-top: 10px;
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--border);
+    padding: 10px 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    color: #ffffff;
+    outline: none;
+    caret-color: #ffffff;
+    display: none;
+  }
+
+  .other-input:focus { border-bottom-color: #ffffff; }
+  .other-input::placeholder { color: var(--text-dimmer); }
+
+  .field-error {
+    font-size: 12px;
+    color: #ff6b6b;
+    margin-top: 8px;
+    font-family: 'Inter', sans-serif;
+    display: none;
+    font-weight: 500;
+  }
+
+  .submission-error {
+    font-size: 14px;
+    color: #ff6b6b;
+    margin-top: 16px;
+    padding: 12px 16px;
+    background: rgba(255, 107, 107, 0.1);
+    border: 1px solid rgba(255, 107, 107, 0.3);
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    display: none;
+  }
+
+  .submission-error.show {
+    display: block;
+  }
+
+  #keynav {
+    position: fixed;
+    bottom: 30px;
+    right: 40px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--text-dimmer);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  #keynav kbd {
+    padding: 3px 8px;
+    border: 1px solid var(--text-dimmer);
+    border-radius: 3px;
+    font-size: 10px;
+  }
+
+  @media (max-width: 600px) {
+    #topnav { padding: 16px 20px; }
+    .screen { padding: 0 20px; }
+    #keynav { display: none; }
+    .options-grid.horizontal { flex-direction: column; }
+  }
+</style>
+  </head>
+  <body>
+
+<div id="progress-bar"></div>
+
+<div id="topnav">
+  <div class="brand"><img src="images/header-logo.png" alt="Forex Bulls Academy" style="width: 150px; height: auto;"></div>
+  <div class="step-counter" id="step-counter"></div>
+</div>
+
+<div id="app">
+
+  <!-- INTRO -->
+  <div class="screen active" id="screen-intro">
+    <div class="intro-badge">Marketing Role · 2026</div>
+    <h1 class="intro-title">Apply to Join<br>the <em>Bulls</em> Team</h1>
+    <p class="intro-body">We're looking for a sharp, execution-driven marketer to grow Forex Bulls Academy across Uganda. This form takes about 8–12 minutes. Be specific — numbers and real examples stand out.</p>
+    <div class="intro-meta">
+      <div class="meta-item"><div class="meta-dot"></div> ~16 questions</div>
+      <div class="meta-item"><div class="meta-dot"></div> 8–12 minutes</div>
+      <div class="meta-item"><div class="meta-dot"></div> Kampala-based role</div>
+    </div>
+    <button class="btn-next" onclick="startForm()">
+      Start Application
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Q1: Full Name -->
+  <div class="screen" id="screen-1">
+    <div class="section-label">Section 1 of 6 · Your Details</div>
+    <h2 class="question-text">What's your full name?</h2>
+    <input type="text" class="input-field" id="q1" placeholder="Jane Nakato" autocomplete="off">
+    <div class="field-error" id="err-1">Please enter your full name.</div>
+    <div>
+      <button class="btn-next" onclick="nextScreen(1)">
+        OK <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+    <div class="enter-hint"><kbd>Enter</kbd> to continue</div>
+  </div>
+
+  <!-- Q2: Phone -->
+  <div class="screen" id="screen-2">
+    <div class="section-label">Section 1 of 6 · Your Details</div>
+    <h2 class="question-text">Your phone number?</h2>
+    <input type="tel" class="input-field" id="q2" placeholder="+256 700 000 000" autocomplete="off">
+    <div class="field-error" id="err-2">Please enter a valid phone number.</div>
+    <div>
+      <button class="btn-next" onclick="nextScreen(2)">
+        OK <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+    <div class="enter-hint"><kbd>Enter</kbd> to continue</div>
+  </div>
+
+  <!-- Q3: Email -->
+  <div class="screen" id="screen-3">
+    <div class="section-label">Section 1 of 6 · Your Details</div>
+    <h2 class="question-text">Email address?</h2>
+    <input type="email" class="input-field" id="q3" placeholder="jane@example.com" autocomplete="off">
+    <div class="field-error" id="err-3">Please enter a valid email address.</div>
+    <div>
+      <button class="btn-next" onclick="nextScreen(3)">
+        OK <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+    <div class="enter-hint"><kbd>Enter</kbd> to continue</div>
+  </div>
+
+  <!-- Q4: City -->
+  <div class="screen" id="screen-4">
+    <div class="section-label">Section 1 of 6 · Your Details</div>
+    <h2 class="question-text">Current city / location?</h2>
+    <input type="text" class="input-field" id="q4" placeholder="Kampala" autocomplete="off">
+    <div class="field-error" id="err-4">Please enter your current city.</div>
+    <div>
+      <button class="btn-next" onclick="nextScreen(4)">
+        OK <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+    <div class="enter-hint"><kbd>Enter</kbd> to continue</div>
+  </div>
+
+  <!-- Q5: Kampala availability -->
+  <div class="screen" id="screen-5">
+    <div class="section-label">Section 1 of 6 · Your Details</div>
+    <h2 class="question-text">Are you available to work in or closely with our Kampala team?</h2>
+    <div class="options-grid horizontal" id="q5-options">
+      <button class="option-btn" onclick="selectOption('q5','Yes',this)"><span class="option-key">A</span> Yes</button>
+      <button class="option-btn" onclick="selectOption('q5','No',this)"><span class="option-key">B</span> No</button>
+      <button class="option-btn" onclick="selectOption('q5','Hybrid',this)"><span class="option-key">C</span> Hybrid</button>
+    </div>
+    <div class="field-error" id="err-5">Please select an option.</div>
+    <div>
+      <button class="btn-next" onclick="nextScreen(5)" style="margin-top:28px">
+        OK <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Q6: Marketing experience -->
+  <div class="screen" id="screen-6">
+    <div class="section-label">Section 2 of 6 · Your Marketing Experience</div>
+    <h2 class="question-text">Briefly describe your marketing experience.</h2>
+    <p class="question-sub">Roles, industries, years. Keep it punchy.</p>
+    <textarea class="input-field" id="q6" placeholder="e.g. 3 years in digital marketing for fintech startups, managed social + paid ads, grew audiences from scratch..."></textarea>
+    <div class="field-error" id="err-6">Please describe your experience.</div>
+    <div>
+      <button class="btn-next" onclick="nextScreen(6)">
+        OK <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Q7: Physical classes/events -->
+  <div class="screen" id="screen-7">
+    <div class="section-label">Section 2 of 6 · Your Marketing Experience</div>
+    <h2 class="question-text">Have you marketed physical classes, events, or services before?</h2>
+    <div class="options-grid" id="q7-options">
+      <button class="option-btn" onclick="selectOption('q7','Yes',this,true)"><span class="option-key">A</span> Yes — please explain below</button>
+      <button class="option-btn" onclick="selectOption('q7','No',this,false)"><span class="option-key">B</span> No</button>
+    </div>
+    <div class="conditional-field" id="q7-explain-wrap">
+      <textarea class="input-field" id="q7-explain" placeholder="Briefly describe what you marketed, how, and the results..." style="margin-top:8px"></textarea>
+    </div>
+    <div class="field-error" id="err-7">Please select an option.</div>
+    <div>
+      <button class="btn-next" onclick="nextScreen(7)" style="margin-top:24px">
+        OK <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Q8: Results -->
+  <div class="screen" id="screen-8">
+    <div class="section-label">Section 2 of 6 · Your Marketing Experience</div>
+    <h2 class="question-text">What results have you achieved in a previous marketing role?</h2>
+    <p class="question-sub">Numbers are highly preferred — leads, conversions, revenue, growth %.</p>
+    <textarea class="input-field" id="q8" placeholder="e.g. Grew email list from 200 to 4,000 in 3 months. Generated 120 paid sign-ups for a Kampala workshop using WhatsApp + Instagram..."></textarea>
+    <div class="field-error" id="err-8">Please share your results.</div>
+    <div>
+      <button class="btn-next" onclick="nextScreen(8)">
+        OK <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Q9: 30-day plan -->
+  <div class="screen" id="screen-9">
+    <div class="section-label">Section 3 of 6 · Your Approach</div>
+    <h2 class="question-text">How would you fill a physical forex class in Kampala within 30 days?</h2>
+    <p class="question-sub">Short plan — channels, offers, and strategy. This is the most important question.</p>
+    <textarea class="input-field" id="q9" placeholder="e.g. Week 1: WhatsApp broadcast to existing contacts + referral incentive. Week 2: Instagram reels targeting 25–40 professionals in Kampala..."></textarea>
+    <div class="field-error" id="err-9">Please share your 30-day plan.</div>
+    <div>
+      <button class="btn-next" onclick="nextScreen(9)">
+        OK <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Q10: Biggest challenge -->
+  <div class="screen" id="screen-10">
+    <div class="section-label">Section 3 of 6 · Your Approach</div>
+    <h2 class="question-text">What's the biggest challenge in marketing physical forex classes in Uganda — and how would you handle it?</h2>
+    <textarea class="input-field" id="q10" placeholder="e.g. Trust and skepticism around forex are the biggest barriers. I'd handle it through social proof — testimonials, alumni stories..."></textarea>
+    <div class="field-error" id="err-10">Please share your perspective.</div>
+    <div>
+      <button class="btn-next" onclick="nextScreen(10)">
+        OK <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Q11: Channels (multi-select) -->
+  <div class="screen" id="screen-11">
+    <div class="section-label">Section 4 of 6 · Tools & Marketing Channels</div>
+    <h2 class="question-text">Which channels are you most confident using?</h2>
+    <p class="question-sub">Select all that apply.</p>
+    <div class="checkbox-grid" id="q11-checks">
+      <div class="checkbox-item" onclick="toggleCheck(this,'WhatsApp marketing')">
+        <div class="checkbox-box"></div> WhatsApp marketing
+      </div>
+      <div class="checkbox-item" onclick="toggleCheck(this,'Instagram / Facebook')">
+        <div class="checkbox-box"></div> Instagram / Facebook
+      </div>
+      <div class="checkbox-item" onclick="toggleCheck(this,'Influencer partnerships')">
+        <div class="checkbox-box"></div> Influencer partnerships
+      </div>
+      <div class="checkbox-item" onclick="toggleCheck(this,'Referral programs')">
+        <div class="checkbox-box"></div> Referral programs
+      </div>
+      <div class="checkbox-item" onclick="toggleCheck(this,'Offline activations / events')">
+        <div class="checkbox-box"></div> Offline activations / events
+      </div>
+      <div class="checkbox-item" onclick="toggleCheck(this,'Paid ads')">
+        <div class="checkbox-box"></div> Paid ads
+      </div>
+      <div class="checkbox-item" onclick="toggleCheck(this,'Other')">
+        <div class="checkbox-box"></div> Other
+      </div>
+    </div>
+    <input type="text" class="other-input" id="q11-other" placeholder="Please specify...">
+    <div class="field-error" id="err-11">Please select at least one channel.</div>
+    <div>
+      <button class="btn-next" onclick="nextScreen(11)" style="margin-top:24px">
+        OK <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Q12: Sales team collaboration -->
+  <div class="screen" id="screen-12">
+    <div class="section-label">Section 4 of 6 · Tools & Marketing Channels</div>
+    <h2 class="question-text">How do you normally work with sales teams to improve conversions?</h2>
+    <textarea class="input-field" id="q12" placeholder="e.g. I share qualified lead context with sales, set up follow-up sequences, align on messaging, and review conversion data weekly..."></textarea>
+    <div class="field-error" id="err-12">Please describe your approach.</div>
+    <div>
+      <button class="btn-next" onclick="nextScreen(12)">
+        OK <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Q13: Measuring success -->
+  <div class="screen" id="screen-13">
+    <div class="section-label">Section 5 of 6 · How You Work</div>
+    <h2 class="question-text">How do you measure whether a marketing campaign is successful?</h2>
+    <textarea class="input-field" id="q13" placeholder="e.g. I track cost per lead, show-up rate, conversion rate, and ROI. Success means the numbers justify the spend AND move toward the business goal..."></textarea>
+    <div class="field-error" id="err-13">Please share how you measure success.</div>
+    <div>
+      <button class="btn-next" onclick="nextScreen(13)">
+        OK <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Q14: Failed campaign -->
+  <div class="screen" id="screen-14">
+    <div class="section-label">Section 5 of 6 · How You Work</div>
+    <h2 class="question-text">Describe a campaign that didn't work. What did you learn and change?</h2>
+    <textarea class="input-field" id="q14" placeholder="Be honest — we value self-awareness and the ability to adapt..."></textarea>
+    <div class="field-error" id="err-14">Please describe a campaign that didn't work.</div>
+    <div>
+      <button class="btn-next" onclick="nextScreen(14)">
+        OK <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Q15: Why Forex Bulls -->
+  <div class="screen" id="screen-15">
+    <div class="section-label">Section 6 of 6 · Final Details</div>
+    <h2 class="question-text">Why do you want to work with Forex Bulls Academy?</h2>
+    <textarea class="input-field" id="q15" placeholder="Be genuine. What draws you specifically to this role and this company?"></textarea>
+    <div class="field-error" id="err-15">Please tell us why you want to join.</div>
+    <div>
+      <button class="btn-next" onclick="nextScreen(15)">
+        OK <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Q16: Portfolio -->
+  <div class="screen" id="screen-16">
+    <div class="section-label">Section 6 of 6 · Final Details</div>
+    <h2 class="question-text">Any portfolio, case studies, or social pages to share?</h2>
+    <p class="question-sub">Optional — links welcome. Instagram, LinkedIn, Behance, Google Drive, anything relevant.</p>
+    <input type="text" class="input-field" id="q16" placeholder="https://... (optional)">
+    <div>
+      <button class="btn-next" onclick="submitForm()">
+        Submit Application
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+    <div class="enter-hint"><kbd>Enter</kbd> to submit</div>
+  </div>
+
+  <!-- THANK YOU -->
+  <div class="screen" id="screen-done">
+    <div class="thankyou-icon">🙂</div>
+    <div class="section-label">Application Submitted</div>
+    <h2 class="question-text">Thank you,<br><span id="done-name" style="color:#ffffff">candidate</span>.</h2>
+    <p class="question-sub" style="margin-top:12px">We've received your application and will review it carefully. If you're a strong fit, someone from the Forex Bulls team will be in touch within 5–7 business days.<br><br>In the meantime — keep it less talk and more action.</p>
+    <div style="margin-top:36px;display:flex;gap:16px;flex-wrap:wrap">
+      <a href="https://forexbullslive.com" style="color:#ffffff;font-family:'Inter',sans-serif;font-size:12px;letter-spacing:0.1em;text-decoration:none;border-bottom:1px solid var(--border);padding-bottom:3px">Visit Website ↗</a>
+    </div>
+  </div>
+
+</div>
+
+<div id="keynav">
+  <kbd>↑</kbd><kbd>↓</kbd> navigate &nbsp;·&nbsp; <kbd>Enter</kbd> continue
+</div>
+
+<script>
+const TOTAL_SCREENS = 16;
+let currentScreen = 0;
+const formData = {};
+
+const singleSelects = {};
+let checkedChannels = [];
+
+function getScreenId(n) {
+  return n === 0 ? 'screen-intro' : n === 99 ? 'screen-done' : `screen-${n}`;
+}
+
+function updateProgress(n) {
+  const pct = n === 0 ? 0 : n === 99 ? 100 : (n / TOTAL_SCREENS) * 100;
+  document.getElementById('progress-bar').style.width = pct + '%';
+  
+  const counter = document.getElementById('step-counter');
+  if (n === 0 || n === 99) {
+    counter.textContent = '';
+  } else {
+    counter.textContent = `${n} / ${TOTAL_SCREENS}`;
+  }
+}
+
+function goToScreen(n) {
+  const current = document.querySelector('.screen.active');
+  const next = document.getElementById(getScreenId(n));
+  
+  if (!next) return;
+  
+  if (current) {
+    current.classList.add('exit');
+    current.classList.remove('active');
+  }
+
+  setTimeout(() => {
+    if (current) {
+      current.classList.remove('exit');
+    }
+    next.classList.add('active');
+    const inp = next.querySelector('input:not([type=hidden]), textarea');
+    if (inp) setTimeout(() => inp.focus(), 50);
+  }, 350);
+
+  currentScreen = n;
+  updateProgress(n);
+}
+
+function startForm() {
+  goToScreen(1);
+}
+
+function selectOption(key, value, btn, showConditional) {
+  const opts = btn.closest('.options-grid, [id$="-options"]').querySelectorAll('.option-btn');
+  opts.forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  singleSelects[key] = value;
+
+  if (key === 'q7') {
+    const wrap = document.getElementById('q7-explain-wrap');
+    if (showConditional === true) {
+      wrap.classList.add('visible');
+    } else {
+      wrap.classList.remove('visible');
+    }
+  }
+}
+
+function toggleCheck(el, value) {
+  el.classList.toggle('checked');
+  if (el.classList.contains('checked')) {
+    if (!checkedChannels.includes(value)) checkedChannels.push(value);
+  } else {
+    checkedChannels = checkedChannels.filter(v => v !== value);
+  }
+  const otherInput = document.getElementById('q11-other');
+  if (value === 'Other') {
+    otherInput.style.display = el.classList.contains('checked') ? 'block' : 'none';
+    if (el.classList.contains('checked')) otherInput.focus();
+  }
+}
+
+function showError(id, msg) {
+  if (id === 'submission-error') {
+    // Create error element if it doesn't exist
+    let errorEl = document.getElementById(id);
+    if (!errorEl) {
+      errorEl = document.createElement('div');
+      errorEl.id = id;
+      errorEl.className = 'submission-error';
+      const activeScreen = document.querySelector('.screen.active');
+      if (activeScreen) {
+        activeScreen.appendChild(errorEl);
+      }
+    }
+    errorEl.textContent = msg;
+    errorEl.classList.add('show');
+    setTimeout(() => { errorEl.classList.remove('show'); }, 5000);
+  } else {
+    const el = document.getElementById(id);
+    if (el) { el.textContent = msg || el.textContent; el.style.display = 'block'; }
+    setTimeout(() => { if (el) el.style.display = 'none'; }, 3000);
+  }
+}
+
+function validate(n) {
+  switch(n) {
+    case 1: {
+      const v = document.getElementById('q1').value.trim();
+      if (!v) { showError('err-1'); return false; }
+      formData.fullName = v;
+      return true;
+    }
+    case 2: {
+      const v = document.getElementById('q2').value.trim();
+      if (!v) { showError('err-2'); return false; }
+      formData.phone = v;
+      return true;
+    }
+    case 3: {
+      const v = document.getElementById('q3').value.trim();
+      if (!v || !v.includes('@')) { showError('err-3'); return false; }
+      formData.email = v;
+      return true;
+    }
+    case 4: {
+      const v = document.getElementById('q4').value.trim();
+      if (!v) { showError('err-4'); return false; }
+      formData.city = v;
+      return true;
+    }
+    case 5: {
+      if (!singleSelects.q5) { showError('err-5'); return false; }
+      formData.kampalaAvail = singleSelects.q5;
+      return true;
+    }
+    case 6: {
+      const v = document.getElementById('q6').value.trim();
+      if (!v) { showError('err-6'); return false; }
+      formData.experience = v;
+      return true;
+    }
+    case 7: {
+      if (!singleSelects.q7) { showError('err-7'); return false; }
+      formData.physicalEvents = singleSelects.q7;
+      if (singleSelects.q7 === 'Yes') {
+        formData.physicalEventsDetail = document.getElementById('q7-explain').value.trim();
+      }
+      return true;
+    }
+    case 8: {
+      const v = document.getElementById('q8').value.trim();
+      if (!v) { showError('err-8'); return false; }
+      formData.results = v;
+      return true;
+    }
+    case 9: {
+      const v = document.getElementById('q9').value.trim();
+      if (!v) { showError('err-9'); return false; }
+      formData.plan30day = v;
+      return true;
+    }
+    case 10: {
+      const v = document.getElementById('q10').value.trim();
+      if (!v) { showError('err-10'); return false; }
+      formData.biggestChallenge = v;
+      return true;
+    }
+    case 11: {
+      if (checkedChannels.length === 0) { showError('err-11'); return false; }
+      const channels = [...checkedChannels];
+      if (channels.includes('Other')) {
+        const spec = document.getElementById('q11-other').value.trim();
+        if (spec) channels.push(`Other: ${spec}`);
+      }
+      formData.channels = channels;
+      return true;
+    }
+    case 12: {
+      const v = document.getElementById('q12').value.trim();
+      if (!v) { showError('err-12'); return false; }
+      formData.salesCollab = v;
+      return true;
+    }
+    case 13: {
+      const v = document.getElementById('q13').value.trim();
+      if (!v) { showError('err-13'); return false; }
+      formData.successMeasure = v;
+      return true;
+    }
+    case 14: {
+      const v = document.getElementById('q14').value.trim();
+      if (!v) { showError('err-14'); return false; }
+      formData.failedCampaign = v;
+      return true;
+    }
+    case 15: {
+      const v = document.getElementById('q15').value.trim();
+      if (!v) { showError('err-15'); return false; }
+      formData.whyForexBulls = v;
+      return true;
+    }
+    case 16: {
+      formData.portfolio = document.getElementById('q16').value.trim();
+      return true;
+    }
+    default: return true;
+  }
+}
+
+function nextScreen(n) {
+  if (!validate(n)) return;
+  goToScreen(n + 1);
+}
+
+function submitForm() {
+  if (!validate(16)) return;
+  
+  // Show loading state
+  const submitBtn = event.target;
+  const originalText = submitBtn.textContent;
+  submitBtn.textContent = 'Submitting...';
+  submitBtn.disabled = true;
+
+  // Send data to Google Apps Script
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzxnVITN8s2kq4afGp3J2hTkSE9OPZG2LGCpEez8WcYIde3dWW6pHGPxqh9NVI-H3onrQ/exec'; // Replace with your deployment URL
+  
+  const payload = Object.fromEntries(
+    Object.entries(formData).map(([k, v]) => [k, Array.isArray(v) ? v.join(', ') : v])
+  );
+
+  fetch(APPS_SCRIPT_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams(payload).toString()
+  })
+  .finally(() => {
+    document.getElementById('done-name').textContent = (formData.fullName || 'candidate').split(' ')[0];
+    goToScreen(99);
+  });
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    const active = document.querySelector('.screen.active');
+    if (!active) return;
+    const focused = document.activeElement;
+    if (focused && focused.tagName === 'TEXTAREA') return;
+    
+    if (currentScreen === 0) { startForm(); return; }
+    if (currentScreen >= 1 && currentScreen <= 15) nextScreen(currentScreen);
+    if (currentScreen === 16) submitForm();
+  }
+});
+</script>
+  </body>
+</html>
+  </body>
+</html>

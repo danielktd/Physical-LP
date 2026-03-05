@@ -205,6 +205,180 @@
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
+/* Application Form Section */
+.application-section {
+  padding: 80px 20px;
+  background: #f8f9fa;
+}
+
+.application-container {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.application-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.application-header h2 {
+  font-size: 36px;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+  color: black;
+}
+
+.application-header p {
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.6);
+  margin: 0;
+}
+
+.application-form {
+  background: white;
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.form-section {
+  margin-bottom: 50px;
+}
+
+.form-section:last-of-type {
+  margin-bottom: 30px;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #000917;
+  margin: 0 0 30px 0;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.form-group {
+  margin-bottom: 28px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 15px;
+  font-weight: 500;
+  color: black;
+  margin-bottom: 10px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="tel"],
+.form-group input[type="email"],
+.form-group input[type="url"],
+.form-group textarea {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-family: inherit;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="tel"]:focus,
+.form-group input[type="email"]:focus,
+.form-group input[type="url"]:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #01247b;
+  box-shadow: 0 0 0 3px rgba(1, 36, 123, 0.1);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.radio-group,
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.radio-label,
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  color: black;
+  cursor: pointer;
+  margin-bottom: 0;
+}
+
+.radio-label input[type="radio"],
+.checkbox-label input[type="checkbox"] {
+  margin-right: 10px;
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+  accent-color: #01247b;
+}
+
+.form-submit {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.submit-button {
+  background: linear-gradient(135deg, #000917 0%, #01247b 50%, #153896 100%);
+  color: white;
+  padding: 14px 48px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.submit-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(1, 36, 123, 0.3);
+}
+
+.submit-button:active {
+  transform: translateY(0);
+}
+
+/* Mobile Responsive for Application Form */
+@media (max-width: 768px) {
+  .application-section {
+    padding: 60px 20px;
+  }
+
+  .application-container {
+    max-width: 100%;
+  }
+
+  .application-form {
+    padding: 24px;
+  }
+
+  .application-header h2 {
+    font-size: 28px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .section-title {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+}
+
 /* Mobile Responsive */
 @media (max-width: 767px) {
   .careers-section-content {
