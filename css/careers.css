@@ -162,17 +162,23 @@
 
 /* CTA Section */
 .cta-section {
-  padding: 60px 40px;
+  padding: 10px 10px;
   text-align: center;
   color: white;
 }
 
 .cta-container {
-  max-width: 1000px;
+  max-width: 100%;
   margin: 0 auto;
   background: linear-gradient(135deg, #000917 0%, #01247b 50%, #153896 100%);
-  padding: 60px 40px;
+  padding: 60px 150px;
   border-radius: 12px;
+}
+
+@media screen and (max-width:768px) {
+    .cta-container {
+        padding: 60px 40px;
+    }
 }
 
 .cta-heading {
